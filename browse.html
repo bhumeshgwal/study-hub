@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Materials | StudyHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 3rem auto 2rem;
+            padding: 0 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .filters {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            padding: 0 1.5rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #e5e5e5;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        .materials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .material-card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .material-card:hover {
+            border-color: #2563eb;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .material-badge {
+            display: inline-block;
+            background: #eff6ff;
+            color: #1e40af;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .material-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .material-meta {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .material-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #e5e5e5;
+            background: white;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            text-align: center;
+            color: #1a1a1a;
+        }
+
+        .action-btn:hover {
+            background: #f9fafb;
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: #6b7280;
+        }
+
+        .no-results h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #9ca3af;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">StudyHub</a>
+            <nav>
+                <a href="browse.html">Browse</a>
+                <a href="pyqs.html">PYQs</a>
+                <a href="request.html">Request</a>
+                <a href="help.html">Help</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Browse Study Materials</h1>
+        <p style="color: #6b7280;">Explore notes, syllabi, and resources across all subjects</p>
+    </section>
+
+    <section class="filters">
+        <button class="filter-btn active" data-filter="all">All Materials</button>
+        <button class="filter-btn" data-filter="ba">BA</button>
+        <button class="filter-btn" data-filter="bsc">BSc</button>
+        <button class="filter-btn" data-filter="bba">BBA</button>
+        <button class="filter-btn" data-filter="bcom">BCom</button>
+        <button class="filter-btn" data-filter="ma">MA</button>
+        <button class="filter-btn" data-filter="msc">MSc</button>
+        <button class="filter-btn" data-filter="mba">MBA</button>
+        <button class="filter-btn" data-filter="mcom">MCom</button>
+    </section>
+
+    <div class="materials-grid" id="materialsGrid">
+        <!-- 
+            ============================================
+            SAMPLE MATERIAL CARDS
+            ============================================
+            Copy this structure for each material
+        -->
+        
+        <div class="material-card" data-degree="ba">
+            <span class="material-badge">BA</span>
+            <h3>English Literature Notes</h3>
+            <div class="material-meta">
+                📚 Year 1 • Semester 1<br>
+                📄 Complete unit notes + PYQs
+            </div>
+            <div class="material-actions">
+                <a href="subject-ba-english.html" class="action-btn">View</a>
+                <a href="#" class="action-btn">Download</a>
+            </div>
+        </div>
+
+        <div class="material-card" data-degree="bsc">
+            <span class="material-badge">BSc</span>
+            <h3>Mathematics - Calculus</h3>
+            <div class="material-meta">
+                📚 Year 1 • Semester 1<br>
+                📄 Theory + solved examples
+            </div>
+            <div class="material-actions">
+                <a href="subject-bsc-math.html" class="action-btn">View</a>
+                <a href="#" class="action-btn">Download</a>
+            </div>
+        </div>
+
+        <div class="material-card" data-degree="mba">
+            <span class="material-badge">MBA</span>
+            <h3>Marketing Management</h3>
+            <div class="material-meta">
+                📚 Year 1 • Semester 1<br>
+                📄 Full syllabus coverage
+            </div>
+            <div class="material-actions">
+                <a href="subject-mba-marketing.html" class="action-btn">View</a>
+                <a href="#" class="action-btn">Download</a>
+            </div>
+        </div>
+
+        <div class="material-card" data-degree="bcom">
+            <span class="material-badge">BCom</span>
+            <h3>Accounting Principles</h3>
+            <div class="material-meta">
+                📚 Year 1 • Semester 1<br>
+                📄 Notes + practice problems
+            </div>
+            <div class="material-actions">
+                <a href="subject-bcom-accounting.html" class="action-btn">View</a>
+                <a href="#" class="action-btn">Download</a>
+            </div>
+        </div>
+
+        <div class="material-card" data-degree="ba">
+            <span class="material-badge">BA</span>
+            <h3>Political Science</h3>
+            <div class="material-meta">
+                📚 Year 2 • Semester 3<br>
+                📄 Theory + case studies
+            </div>
+            <div class="material-actions">
+                <a href="subject-ba-polsci.html" class="action-btn">View</a>
+                <a href="#" class="action-btn">Download</a>
+            </div>
+        </div>
+
+        <div class="material-card" data-degree="bsc">
+            <span class="material-badge">BSc</span>
+            <h3>Physics - Mechanics</h3>
+            <div class="material-meta">
+                📚 Year 1 • Semester 2<br>
+                📄 Derivations + numericals
+            </div>
+            <div class="material-actions">
+                <a href="subject-bsc-physics.html" class="action-btn">View</a>
+                <a href="#" class="action-btn">Download</a>
+            </div>
+        </div>
+
+        <!-- 
+            ============================================
+            ADD MORE MATERIAL CARDS HERE
+            ============================================
+            Copy above structure and update:
+            - data-degree attribute
+            - badge text
+            - subject name
+            - meta information
+            - links
+        -->
+    </div>
+
+    <footer>
+        <p>&copy; 2025 StudyHub • Govt. College Aron</p>
+        <p><a href="help.html">Report Issue</a> | <a href="index.html">Home</a></p>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const materialCards = document.querySelectorAll('.material-card');
+        const materialsGrid = document.getElementById('materialsGrid');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                const filter = this.dataset.filter;
+
+                // Show/hide cards based on filter
+                let visibleCount = 0;
+                materialCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.degree === filter) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Show "no results" message if needed
+                if (visibleCount === 0) {
+                    if (!document.querySelector('.no-results')) {
+                        const noResults = document.createElement('div');
+                        noResults.className = 'no-results';
+                        noResults.innerHTML = `
+                            <h2>No materials found</h2>
+                            <p>Materials for this degree are being added soon.</p>
+                            <a href="request.html" style="color: #2563eb;">Request materials</a>
+                        `;
+                        materialsGrid.appendChild(noResults);
+                    }
+                } else {
+                    const noResults = document.querySelector('.no-results');
+                    if (noResults) noResults.remove();
+                }
+            });
+        });
+
+        // Check for search query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('q');
+        
+        if (searchQuery) {
+            // Filter materials based on search query
+            const query = searchQuery.toLowerCase();
+            let matchCount = 0;
+
+            materialCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const meta = card.querySelector('.material-meta').textContent.toLowerCase();
+                
+                if (title.includes(query) || meta.includes(query)) {
+                    card.style.display = 'block';
+                    matchCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update page title
+            document.querySelector('.hero h1').textContent = `Search Results for "${searchQuery}"`;
+            document.querySelector('.hero p').textContent = `Found ${matchCount} material(s)`;
+        }
+    </script>
+</body>
+</html>

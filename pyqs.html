@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previous Year Questions | StudyHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #92400e;
+        }
+
+        .hero p {
+            color: #78350f;
+            font-size: 1.125rem;
+        }
+
+        .filters {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .filter-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+            color: #374151;
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e5e5e5;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .filter-chip:hover,
+        .filter-chip.active {
+            background: #fbbf24;
+            border-color: #fbbf24;
+            color: white;
+        }
+
+        .pyq-grid {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pyq-card {
+            background: white;
+            border: 2px solid #fbbf24;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .pyq-card:hover {
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .pyq-year {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .pyq-card h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .pyq-meta {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background: #fbbf24;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .download-btn:hover {
+            background: #f59e0b;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 1.5rem;
+            color: #6b7280;
+        }
+
+        .empty-state h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #9ca3af;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .pyq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">StudyHub</a>
+            <nav>
+                <a href="browse.html">Browse</a>
+                <a href="pyqs.html">PYQs</a>
+                <a href="request.html">Request</a>
+                <a href="help.html">Help</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>📝 Previous Year Questions</h1>
+            <p>Practice with actual exam papers from 2019-2024. Filter by degree, year, and subject.</p>
+        </div>
+    </section>
+
+    <section class="filters">
+        <div class="filter-section">
+            <label class="filter-label">Filter by Degree</label>
+            <div class="filter-options">
+                <button class="filter-chip active" data-type="degree" data-value="all">All</button>
+                <button class="filter-chip" data-type="degree" data-value="ba">BA</button>
+                <button class="filter-chip" data-type="degree" data-value="bsc">BSc</button>
+                <button class="filter-chip" data-type="degree" data-value="bba">BBA</button>
+                <button class="filter-chip" data-type="degree" data-value="bcom">BCom</button>
+                <button class="filter-chip" data-type="degree" data-value="ma">MA</button>
+                <button class="filter-chip" data-type="degree" data-value="msc">MSc</button>
+                <button class="filter-chip" data-type="degree" data-value="mba">MBA</button>
+                <button class="filter-chip" data-type="degree" data-value="mcom">MCom</button>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <label class="filter-label">Filter by Year</label>
+            <div class="filter-options">
+                <button class="filter-chip active" data-type="year" data-value="all">All Years</button>
+                <button class="filter-chip" data-type="year" data-value="2024">2024</button>
+                <button class="filter-chip" data-type="year" data-value="2023">2023</button>
+                <button class="filter-chip" data-type="year" data-value="2022">2022</button>
+                <button class="filter-chip" data-type="year" data-value="2021">2021</button>
+                <button class="filter-chip" data-type="year" data-value="2020">2020</button>
+                <button class="filter-chip" data-type="year" data-value="2019">2019</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="pyq-grid" id="pyqGrid">
+        <!-- 
+            ============================================
+            SAMPLE PYQ CARDS
+            ============================================
+            Copy this structure for each PYQ
+            data-degree: ba, bsc, bba, etc.
+            data-year: 2024, 2023, etc.
+        -->
+
+        <div class="pyq-card" data-degree="ba" data-year="2024">
+            <span class="pyq-year">2024</span>
+            <h3>BA English Literature</h3>
+            <div class="pyq-meta">
+                📚 Year 1 • Semester 1<br>
+                📄 Complete question paper with solutions
+            </div>
+            <!-- 
+                ============================================
+                REPLACE # WITH GOOGLE DRIVE LINK
+                ============================================
+            -->
+            <a href="#" class="download-btn">📥 Download PDF</a>
+        </div>
+
+        <div class="pyq-card" data-degree="bsc" data-year="2024">
+            <span class="pyq-year">2024</span>
+            <h3>BSc Mathematics</h3>
+            <div class="pyq-meta">
+                📚 Year 1 • Semester 1<br>
+                📄 Calculus + solved problems
+            </div>
+            <a href="#" class="download-btn">📥 Download PDF</a>
+        </div>
+
+        <div class="pyq-card" data-degree="mba" data-year="2023">
+            <span class="pyq-year">2023</span>
+            <h3>MBA Marketing Management</h3>
+            <div class="pyq-meta">
+                📚 Year 1 • Semester 2<br>
+                📄 Theory + case studies
+            </div>
+            <a href="#" class="download-btn">📥 Download PDF</a>
+        </div>
+
+        <div class="pyq-card" data-degree="bcom" data-year="2024">
+            <span class="pyq-year">2024</span>
+            <h3>BCom Accounting</h3>
+            <div class="pyq-meta">
+                📚 Year 2 • Semester 3<br>
+                📄 Full paper + answer key
+            </div>
+            <a href="#" class="download-btn">📥 Download PDF</a>
+        </div>
+
+        <div class="pyq-card" data-degree="ba" data-year="2023">
+            <span class="pyq-year">2023</span>
+            <h3>BA Political Science</h3>
+            <div class="pyq-meta">
+                📚 Year 2 • Semester 4<br>
+                📄 Indian Politics section
+            </div>
+            <a href="#" class="download-btn">📥 Download PDF</a>
+        </div>
+
+        <div class="pyq-card" data-degree="bsc" data-year="2023">
+            <span class="pyq-year">2023</span>
+            <h3>BSc Physics - Mechanics</h3>
+            <div class="pyq-meta">
+                📚 Year 1 • Semester 2<br>
+                📄 Numerical problems included
+            </div>
+            <a href="#" class="download-btn">📥 Download PDF</a>
+        </div>
+
+        <div class="pyq-card" data-degree="ba" data-year="2022">
+            <span class="pyq-year">2022</span>
+            <h3>BA History</h3>
+            <div class="pyq-meta">
+                📚 Year 3 • Semester 5<br>
+                📄 Modern India chapter
+            </div>
+            <a href="#" class="download-btn">📥 Download PDF</a>
+        </div>
+
+        <div class="pyq-card" data-degree="bcom" data-year="2022">
+            <span class="pyq-year">2022</span>
+            <h3>BCom Business Law</h3>
+            <div class="pyq-meta">
+                📚 Year 2 • Semester 4<br>
+                📄 Case studies + theory
+            </div>
+            <a href="#" class="download-btn">📥 Download PDF</a>
+        </div>
+
+        <!-- 
+            ============================================
+            ADD MORE PYQ CARDS HERE
+            ============================================
+        -->
+    </div>
+
+    <footer>
+        <p>&copy; 2025 StudyHub • Govt. College Aron</p>
+        <p><a href="help.html">Missing a paper? Report it</a> | <a href="index.html">Home</a></p>
+    </footer>
+
+    <script>
+        const filterChips = document.querySelectorAll('.filter-chip');
+        const pyqCards = document.querySelectorAll('.pyq-card');
+        const pyqGrid = document.getElementById('pyqGrid');
+
+        let currentFilters = {
+            degree: 'all',
+            year: 'all'
+        };
+
+        filterChips.forEach(chip => {
+            chip.addEventListener('click', function() {
+                const filterType = this.dataset.type;
+                const filterValue = this.dataset.value;
+
+                // Remove active class from siblings
+                document.querySelectorAll(`[data-type="${filterType}"]`).forEach(c => {
+                    c.classList.remove('active');
+                });
+
+                // Add active class to clicked chip
+                this.classList.add('active');
+
+                // Update current filters
+                currentFilters[filterType] = filterValue;
+
+                // Apply filters
+                applyFilters();
+            });
+        });
+
+        function applyFilters() {
+            let visibleCount = 0;
+
+            pyqCards.forEach(card => {
+                const cardDegree = card.dataset.degree;
+                const cardYear = card.dataset.year;
+
+                const degreeMatch = currentFilters.degree === 'all' || cardDegree === currentFilters.degree;
+                const yearMatch = currentFilters.year === 'all' || cardYear === currentFilters.year;
+
+                if (degreeMatch && yearMatch) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show empty state if no results
+            const existingEmpty = document.querySelector('.empty-state');
+            if (existingEmpty) existingEmpty.remove();
+
+            if (visibleCount === 0) {
+                const emptyState = document.createElement('div');
+                emptyState.className = 'empty-state';
+                emptyState.innerHTML = `
+                    <h2>No question papers found</h2>
+                    <p>Try different filters or <a href="request.html" style="color: #2563eb;">request this material</a></p>
+                `;
+                pyqGrid.appendChild(emptyState);
+            }
+        }
+    </script>
+</body>
+</html>

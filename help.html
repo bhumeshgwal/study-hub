@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support | StudyHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            color: #6b7280;
+            font-size: 1.125rem;
+        }
+
+        .content-grid {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .form-section {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .form-section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: #2563eb;
+            color: white;
+            padding: 0.875rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-box {
+            background: #f9fafb;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .info-box h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .info-box ul {
+            list-style: none;
+        }
+
+        .info-box li {
+            padding: 0.5rem 0;
+            color: #6b7280;
+        }
+
+        .faq-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .faq-section h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .faq-item:hover {
+            border-color: #2563eb;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.125rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: #6b7280;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .success-message {
+            background: #d1fae5;
+            border: 1px solid #10b981;
+            color: #065f46;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #9ca3af;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        @media (max-width: 968px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">StudyHub</a>
+            <nav>
+                <a href="browse.html">Browse</a>
+                <a href="pyqs.html">PYQs</a>
+                <a href="request.html">Request</a>
+                <a href="help.html">Help</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Help & Support</h1>
+        <p>We're here to help you. Submit a ticket or browse FAQs below.</p>
+    </section>
+
+    <div class="content-grid">
+        <div class="form-section">
+            <h2>Submit a Support Ticket</h2>
+            
+            <div class="success-message" id="successMessage">
+                ✓ Your ticket has been submitted! We'll respond within 24 hours.
+            </div>
+
+            <form id="supportForm">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" required placeholder="student@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Issue Category *</label>
+                    <select id="category" required>
+                        <option value="">Select category...</option>
+                        <option value="missing-notes">Missing Study Material</option>
+                        <option value="wrong-content">Incorrect/Wrong Content</option>
+                        <option value="broken-link">Broken Download Link</option>
+                        <option value="technical">Technical Issue</option>
+                        <option value="request">Material Request</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <input type="text" id="subject" required placeholder="Brief description of issue">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Describe Your Issue *</label>
+                    <textarea id="message" required placeholder="Please provide detailed information about your issue..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Ticket</button>
+            </form>
+        </div>
+
+        <div class="sidebar">
+            <div class="info-box">
+                <h3>📧 Contact Info</h3>
+                <ul>
+                    <li><strong>Email:</strong> support@studyhub.edu</li>
+                    <li><strong>Response Time:</strong> 24 hours</li>
+                    <li><strong>Admin:</strong> Bhumesh99</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h3>⚡ Quick Actions</h3>
+                <ul>
+                    <li><a href="request.html" style="color: #2563eb;">Request Missing Material</a></li>
+                    <li><a href="browse.html" style="color: #2563eb;">Browse All Subjects</a></li>
+                    <li><a href="pyqs.html" style="color: #2563eb;">View PYQs</a></li>
+                </ul>
+            </div>
+
+            <div class="info-box" style="background: #fef3c7; border-color: #fbbf24;">
+                <h3>💡 Pro Tip</h3>
+                <p style="color: #92400e; font-size: 0.95rem;">
+                    Include your degree, year, and subject name when reporting issues for faster resolution.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                How do I download study materials?
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                Navigate to your degree → year → subject page. Click on any PDF link to view or download materials directly from Google Drive.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                What if I can't find notes for my subject?
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                Use the "Request Material" page or submit a ticket above. We'll prioritize adding requested materials within 48 hours.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                Are the materials according to NEP 2020?
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                Yes! All syllabi and materials are updated as per the latest NEP 2020 curriculum for Govt. College Aron.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                How do I report incorrect content?
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                Submit a ticket above with category "Incorrect/Wrong Content" and specify the subject and file name. We'll review and update within 24 hours.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                Can I contribute my own notes?
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                Yes! Email your notes to support@studyhub.edu with your name, degree, and subject. Quality contributions will be credited.
+            </div>
+        </div>
+
+        <div class="faq-item" onclick="this.classList.toggle('active')">
+            <div class="faq-question">
+                Is there a mobile app?
+                <span>+</span>
+            </div>
+            <div class="faq-answer">
+                Not yet, but our website is fully mobile-optimized. You can access all features from your phone's browser.
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 StudyHub • Govt. College Aron</p>
+        <p><a href="index.html">Home</a> | Built for students, by students</p>
+    </footer>
+
+    <script>
+        // 
+        // ============================================
+        // FORM SUBMISSION HANDLER
+        // ============================================
+        // For demo: Shows success message
+        // For production: Connect to backend/email service
+        // 
+        
+        document.getElementById('supportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                category: document.getElementById('category').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value,
+                timestamp: new Date().toISOString()
+            };
+
+            // Log to console (for demo purposes)
+            console.log('Ticket submitted:', formData);
+
+            // Show success message
+            document.getElementById('successMessage').classList.add('show');
+
+            // Reset form
+            this.reset();
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById('successMessage').classList.remove('show');
+            }, 5000);
+
+            // 
+            // ============================================
+            // TO CONNECT TO BACKEND:
+            // ============================================
+            // Replace above code with:
+            // 
+            // fetch('YOUR_BACKEND_ENDPOINT', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(formData)
+            // })
+            // .then(response => response.json())
+            // .then(data => {
+            //     document.getElementById('successMessage').classList.add('show');
+            //     this.reset();
+            // })
+            // .catch(error => {
+            //     alert('Error submitting ticket. Please try again.');
+            // });
+        });
+    </script>
+</body>
+</html>

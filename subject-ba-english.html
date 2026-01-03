@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BA English Literature | StudyHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding: 0 1.5rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .subject-hero {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .subject-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .subject-meta {
+            display: flex;
+            gap: 2rem;
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .content-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e5e5e5;
+        }
+
+        .syllabus-box {
+            background: #f9fafb;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+            margin-top: 1rem;
+        }
+
+        .download-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .unit-grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .unit-card {
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .unit-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2563eb;
+        }
+
+        .material-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .material-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .material-list li:last-child {
+            border-bottom: none;
+        }
+
+        .material-link {
+            color: #1a1a1a;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .material-link:hover {
+            color: #2563eb;
+        }
+
+        .file-icon {
+            color: #dc2626;
+        }
+
+        .pyq-section {
+            background: #fef3c7;
+            border: 1px solid #fbbf24;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .pyq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .pyq-card {
+            background: white;
+            border: 1px solid #fbbf24;
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .pyq-card:hover {
+            background: #fbbf24;
+            color: white;
+        }
+
+        .placeholder-note {
+            background: #eff6ff;
+            border: 1px dashed #2563eb;
+            padding: 1.5rem;
+            border-radius: 6px;
+            color: #1e40af;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #9ca3af;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .subject-hero h1 {
+                font-size: 2rem;
+            }
+
+            .subject-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">StudyHub</a>
+            <nav>
+                <a href="browse.html">Browse</a>
+                <a href="pyqs.html">PYQs</a>
+                <a href="request.html">Request</a>
+                <a href="help.html">Help</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> / <a href="degree-ba.html">BA</a> / English Literature
+    </div>
+
+    <section class="subject-hero">
+        <!-- 
+            ============================================
+            EDIT SUBJECT NAME & DETAILS HERE
+            ============================================
+        -->
+        <h1>English Literature</h1>
+        <div class="subject-meta">
+            <span>🎓 BA - Year 1</span>
+            <span>📅 Semester 1 & 2</span>
+            <span>📚 Core Subject</span>
+        </div>
+    </section>
+
+    <!-- SYLLABUS SECTION -->
+    <section class="content-section">
+        <h2 class="section-title">📄 Syllabus</h2>
+        <div class="syllabus-box">
+            <h3>Complete Syllabus 2024-25</h3>
+            <p style="color: #6b7280; margin: 0.5rem 0;">Official syllabus document as per NEP 2020 guidelines</p>
+            
+            <!-- 
+                ============================================
+                ADD GOOGLE DRIVE SYLLABUS LINK HERE
+                ============================================
+                Replace # with your Google Drive link
+            -->
+            <a href="#" class="download-btn">📥 Download Syllabus PDF</a>
+            
+            <!-- IF NO SYLLABUS YET -->
+            <div class="placeholder-note" style="margin-top: 1rem;">
+                ⚠️ <strong>Admin Note:</strong> Upload syllabus PDF to Google Drive and add link above
+            </div>
+        </div>
+    </section>
+
+    <!-- UNITS & STUDY MATERIALS -->
+    <section class="content-section">
+        <h2 class="section-title">📚 Study Materials by Unit</h2>
+        
+        <div class="unit-grid">
+            <!-- 
+                ============================================
+                UNIT 1
+                ============================================
+            -->
+            <div class="unit-card">
+                <h3>Unit 1: Introduction to Literature</h3>
+                <p style="color: #6b7280;">Poetry, Prose, and Drama fundamentals</p>
+                
+                <ul class="material-list">
+                    <!-- 
+                        ============================================
+                        ADD NOTES/PDFs HERE FOR UNIT 1
+                        ============================================
+                        Copy <li> structure for each file
+                        Replace # with Google Drive link
+                    -->
+                    <li>
+                        <a href="#" class="material-link">
+                            <span class="file-icon">📕</span>
+                            Complete Notes - Unit 1.pdf
+                        </a>
+                        <span style="color: #9ca3af; font-size: 0.85rem;">2.3 MB</span>
+                    </li>
+                    <li>
+                        <a href="#" class="material-link">
+                            <span class="file-icon">📕</span>
+                            Poetry Analysis Guide.pdf
+                        </a>
+                        <span style="color: #9ca3af; font-size: 0.85rem;">1.8 MB</span>
+                    </li>
+                    <!-- ADD MORE FILES HERE -->
+                </ul>
+                
+                <!-- IF NO MATERIALS YET -->
+                <div class="placeholder-note">
+                    💡 No materials uploaded yet. <a href="request.html" style="color: #2563eb;">Request notes</a>
+                </div>
+            </div>
+
+            <!-- 
+                ============================================
+                UNIT 2
+                ============================================
+            -->
+            <div class="unit-card">
+                <h3>Unit 2: British Poetry</h3>
+                <p style="color: #6b7280;">Romantic and Victorian era poets</p>
+                
+                <ul class="material-list">
+                    <li>
+                        <a href="#" class="material-link">
+                            <span class="file-icon">📕</span>
+                            Wordsworth Analysis.pdf
+                        </a>
+                        <span style="color: #9ca3af; font-size: 0.85rem;">1.5 MB</span>
+                    </li>
+                    <!-- ADD MORE FILES -->
+                </ul>
+            </div>
+
+            <!-- 
+                ============================================
+                COPY ABOVE STRUCTURE FOR MORE UNITS
+                ============================================
+            -->
+            <div class="unit-card">
+                <h3>Unit 3: Shakespeare</h3>
+                <p style="color: #6b7280;">Tragedies, Comedies, and Sonnets</p>
+                <div class="placeholder-note">
+                    💡 Materials coming soon
+                </div>
+            </div>
+
+            <div class="unit-card">
+                <h3>Unit 4: Modern Literature</h3>
+                <p style="color: #6b7280;">20th century writers and movements</p>
+                <div class="placeholder-note">
+                    💡 Materials coming soon
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREVIOUS YEAR QUESTIONS -->
+    <section class="content-section">
+        <h2 class="section-title">📝 Previous Year Questions</h2>
+        
+        <div class="pyq-section">
+            <h3 style="margin-bottom: 0.5rem;">Solved Question Papers</h3>
+            <p style="color: #92400e; margin-bottom: 1rem;">Practice with actual exam papers from previous years</p>
+            
+            <!-- 
+                ============================================
+                ADD PYQ LINKS HERE
+                ============================================
+                Replace # with Google Drive link
+            -->
+            <div class="pyq-grid">
+                <a href="#" class="pyq-card">📄 2024 Paper</a>
+                <a href="#" class="pyq-card">📄 2023 Paper</a>
+                <a href="#" class="pyq-card">📄 2022 Paper</a>
+                <a href="#" class="pyq-card">📄 2021 Paper</a>
+                <a href="#" class="pyq-card">📄 2020 Paper</a>
+                <!-- ADD MORE YEARS -->
+            </div>
+
+            <div class="placeholder-note" style="margin-top: 1rem;">
+                ⚠️ <strong>Admin:</strong> Upload PYQ PDFs and replace # with Google Drive links
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 StudyHub • Govt. College Aron</p>
+        <p><a href="help.html">Report Issue</a> | <a href="request.html">Request Material</a></p>
+    </footer>
+</body>
+</html>
